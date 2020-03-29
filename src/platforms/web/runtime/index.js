@@ -31,7 +31,7 @@ extend(Vue.options.directives, platformDirectives)
 extend(Vue.options.components, platformComponents)
 
 // install platform patch function
-Vue.prototype.__patch__ = inBrowser ? patch : noop
+Vue.prototype.__patch__ = inBrowser ? patch : noop  // 比对重新渲染， 虚拟DOM比对
 
 // public mount method
 Vue.prototype.$mount = function (

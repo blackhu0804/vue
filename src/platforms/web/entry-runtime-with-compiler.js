@@ -15,7 +15,7 @@ const idToTemplate = cached(id => {
 })
 
 const mount = Vue.prototype.$mount
-Vue.prototype.$mount = function (
+Vue.prototype.$mount = function ( // 如果有模板 就把模板变为render函数
   el?: string | Element,
   hydrating?: boolean
 ): Component {
@@ -31,8 +31,8 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
-  if (!options.render) {
-    let template = options.template
+  if (!options.render) { // 先查找有没有 render 函数
+    let template = options.template  // 再找 templeate
     if (template) {
       if (typeof template === 'string') {
         if (template.charAt(0) === '#') {
@@ -61,7 +61,8 @@ Vue.prototype.$mount = function (
       if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
         mark('compile')
       }
-
+      // compiler ast 分词 语法拆分 分析 ast =》 生成字符串
+      // compileToFunctions 编译成 render 函数
       const { render, staticRenderFns } = compileToFunctions(template, {
         outputSourceRange: process.env.NODE_ENV !== 'production',
         shouldDecodeNewlines,

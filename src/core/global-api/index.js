@@ -38,12 +38,12 @@ export function initGlobalAPI (Vue: GlobalAPI) {
     warn,
     extend,
     mergeOptions,
-    defineReactive
+    defineReactive // Object.defineProperty
   }
 
-  Vue.set = set
+  Vue.set = set // set 调用 defineReactive
   Vue.delete = del
-  Vue.nextTick = nextTick
+  Vue.nextTick = nextTick // next 下一事件环
 
   // 2.6 explicit observable API
   Vue.observable = <T>(obj: T): T => {
