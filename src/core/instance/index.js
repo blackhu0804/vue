@@ -15,10 +15,10 @@ function Vue (options) {
 }
 
 // 给当前实例添加属性和方法
-initMixin(Vue)
-stateMixin(Vue)
-eventsMixin(Vue)
-lifecycleMixin(Vue)
-renderMixin(Vue)
+initMixin(Vue) // 初始化mixin
+stateMixin(Vue) // $set $delete $watch
+eventsMixin(Vue) // 实现 vue 的发布订阅模式
+lifecycleMixin(Vue) // Vue.prototype._update $forceUpdate $destory
+renderMixin(Vue) // Vue.prototype._render
 
 export default Vue

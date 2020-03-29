@@ -90,11 +90,11 @@ export function lifecycleMixin (Vue: Class<Component>) {
   Vue.prototype.$forceUpdate = function () {
     const vm: Component = this
     if (vm._watcher) {
-      vm._watcher.update()
+      vm._watcher.update() // 调用watcher 的update
     }
   }
 
-  Vue.prototype.$destroy = function () {
+  Vue.prototype.$destroy = function () { // 组件销毁
     const vm: Component = this
     if (vm._isBeingDestroyed) {
       return
@@ -102,7 +102,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
     callHook(vm, 'beforeDestroy')
     vm._isBeingDestroyed = true
     // remove self from parent
-    const parent = vm.$parent
+    const parent = vm.$parent // 解绑父子关系
     if (parent && !parent._isBeingDestroyed && !vm.$options.abstract) {
       remove(parent.$children, vm)
     }
@@ -122,7 +122,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
     // call the last hook...
     vm._isDestroyed = true
     // invoke destroy hooks on current rendered tree
-    vm.__patch__(vm._vnode, null)
+    vm.__patch__(vm._vnode, null) // 清除指令
     // fire destroyed hook
     callHook(vm, 'destroyed')
     // turn off all instance listeners.
@@ -164,7 +164,7 @@ export function mountComponent (
       }
     }
   }
-  callHook(vm, 'beforeMount')
+  callHook(vm, 'beforeMount')  // 开始挂载
 
   let updateComponent
   /* istanbul ignore if */
